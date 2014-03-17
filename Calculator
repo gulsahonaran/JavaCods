@@ -1,0 +1,90 @@
+
+import java.util.Scanner; 
+
+public class Calculator 
+{
+
+   private static Scanner input;
+
+public static void main( String[] args )
+   {
+      
+      input = new Scanner( System.in );
+
+      int number1=0; 
+      int number2=0; 
+      int result;
+      String operation;
+      
+      
+      System.out.print( "Enter first integer: " ); 
+     //klayveden girilenin tam sayı mı değil mi diye kontrol eder.
+      try{
+    	  number1 = input.nextInt(); //eğer hata bulunursa kodun çalışması kesilip catch geçilir.
+      }
+      catch(Exception e)
+      {
+    	  //daha sonra bu kod bloğundaki işlemler yapılır
+    	  System.out.println( "Not an integer " ); 
+       	  System.exit(-1);
+      }
+      
+      
+      System.out.print( "Enter second integer: " );
+       
+      try{
+    	  number2 = input.nextInt(); 
+      }
+      catch(Exception e)
+      {
+    	  System.out.println( "Not an integer " ); 
+    	  System.exit(-1);
+      }
+      
+      //String ile klavyeden girile operation almak için kullanılır. 
+      System.out.print("Enter operation");
+       operation = input.next() ;
+      
+       //girilen operationa göre işlemler yapılır ve çıktı verilir.
+      if(operation.equals  ("+"))//== ya da != gibi işlemler if'in içinde düzgün çalışmaz 
+    	  //".equals" türevleri kullanılarak karşılaştırma yapılır
+      {
+    	  result = number1 + number2;
+          System.out.printf( "Sum is %d\n", result ); 
+      }
+      if(operation.equals  ("%"))
+      {
+    	  result = number1 % number2;
+          System.out.printf( "Sum is %d\n", result ); 
+      }
+      if(operation.equals  ("-"))
+      {
+    	  result = number1 - number2;
+          System.out.printf( "Sum is %d\n", result ); 
+      }
+      if(operation.equals  ("/"))
+      {
+    	  if(number2!=0)//bölenin 0' eşit olması işlemde hata vericeğinden dolayı kontrol edilir.
+    	  {
+    		  result = number1 / number2;
+              System.out.printf( "Sum is %d\n", result );
+    	  }
+          else//number2=0 ise uyarı yazısı ekrana yazdırılır ve işleme son verilir.
+          {
+        	  System.out.println( "don't enter zero to number2" ); 
+        	  
+          }
+      }
+      if(operation.equals  ("*"))
+      {
+    	  result = number1 * number2;
+          System.out.printf( "Sum is %d\n", result ); 
+      }
+      else//kullanıcı tarafından girilen operation sistemde tanımlı olmadığını ifade eder
+      {
+    	  System.out.println( "Invalid operation" ); 
+      }
+    	  
+
+   } 
+} 
