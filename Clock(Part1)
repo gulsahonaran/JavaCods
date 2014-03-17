@@ -1,0 +1,126 @@
+public class Clock
+{
+	// Stores the hour info
+	
+	
+	private int hour;//Stores the minute info	
+	private int minute;// Stores the second info
+	private int second;// Stores the clock name
+	private String name;	
+
+	
+	
+       
+	// Constructor function that instantiates the class with time 00:00:00
+	public Clock() {
+            setHours(0);
+            setMinutes(0);
+            setSeconds(0);
+	}
+
+        //Constructor function that instantiates the class
+	public Clock(int hours, int minutes, int seconds) {
+            setHours(hours);
+            setMinutes(minutes);
+            setSeconds(seconds);
+	}
+	
+	// Constructor gets another Clock object as parameter and uses that object&#39;s clock value to instantiate itself
+	public Clock(Clock clock) {
+            setHours(clock.getHours());
+            setMinutes(clock.getMinutes());
+            setSeconds(clock.getSeconds());
+            setName(clock.getName());
+	}
+	
+	//Sets hours, minutes and seconds info
+	public void setClock(int hours, int minutes, int seconds) {
+            setHours(hours);
+            setMinutes(minutes);
+            setSeconds(seconds);
+	}
+	
+	// Returns the time as a String 23:05:12
+	public String getClock() {
+            String time;
+            time = String.format("%2d:%2d:%2d", getHours(), getMinutes(), getSeconds());
+            return time;
+	}
+	
+	//Sets the hours. If hours is greater than 23 or less than 0 sets hour to 00
+	 public void setHours(int hours) {
+            if (hours > 23 || hours < 0)
+                hours = 0;
+            hour = hours;
+	}
+	
+	// Sets the hours. If hours is greater than 59 or less than 0 sets hour to 00
+	public void setMinutes(int minutes) {
+            if (minutes > 59 || minutes < 0)
+                minutes = 0;
+            minute = minutes;
+	}
+	
+	//Sets the hours. If hours is greater than 59 or less than 0 sets hour to 00
+	 public void setSeconds(int seconds) {
+            if (seconds > 59 || seconds < 0)
+                seconds = 0;
+            second = seconds;
+	}
+	
+	// Increments the hour value
+	public void incrementHours(int hours) {
+            hour = (hour + hours) % 24;
+            if (hour < 0)//Check if user decrements hour
+                hour += 24;
+	}
+	
+	// Increments the minutes value. If the minutes value overflows triggers the incrementHours method
+	public void incrementMinutes(int minutes) {
+            if (minute + minutes >= 60 || minute + minutes < 0)
+                incrementHours((minute + minutes) / 60);
+            minute = (minute + minutes) % 60;
+            if (minute < 0)
+                minute += 60;
+	}
+	
+	//Increments the seconds value. If the seconds value overflows triggers the incrementMinutes method
+	public void incrementSeconds(int seconds) {
+            if (second + seconds >= 60 || second + seconds < 0)
+                incrementMinutes((second + seconds) / 60);
+            second = (second + seconds) % 60;
+            if (second < 0)
+                second += 60;
+	}
+	
+	// Returns the hour value
+	public int getHours() {
+            return hour;
+	}
+	
+	// Returns the minutes value
+	public int getMinutes() {
+            return minute;
+	}
+	
+	// Returns the second value
+	 public int getSeconds() {
+            return second;
+	}
+	
+         //Displays the time on standart output
+	public void displayTime() {
+            System.out.println(String.format("%s - %s", getName(), getClock()));
+	}
+	
+         // Sets the name of the clock
+	public void setName(String nm) {
+            name = nm;
+	}
+	
+         // Returns the name of the clock
+	public String getName() {
+            return name;
+	}
+}
+
